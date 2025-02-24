@@ -1,11 +1,14 @@
 import pygame
 from settings import CELL_SIZE, LABYRINTH_GRID, BLUE, WHITE
 
+
 def draw_labyrinth(surface):
     for y, row in enumerate(LABYRINTH_GRID):
         for x, cell in enumerate(row):
             if cell == 1:
-                pygame.draw.rect(surface, BLUE, (x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+                pygame.draw.rect(
+                    surface, BLUE, (x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+                )
 
 
 def create_points():
