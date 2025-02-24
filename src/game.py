@@ -32,11 +32,12 @@ class Game:
     def init_game(self):
         self.points, self.power_pellets = create_points()
         self.pacman = Pacman()
+        # Update ghost spawn positions to safe cells in the maze
         self.ghosts = [
-            Ghost((6, 6), RED, "Blinky"),
-            Ghost((7, 6), PINK, "Pinky"),
-            Ghost((6, 7), CYAN, "Inky"),
-            Ghost((7, 7), ORANGE, "Clyde"),
+            Ghost((6, 5), RED, "Blinky"),
+            Ghost((7, 5), PINK, "Pinky"),
+            Ghost((6, 6), CYAN, "Inky"),
+            Ghost((12, 6), ORANGE, "Clyde"),
         ]
         self.score = 0
         self.lives = 3

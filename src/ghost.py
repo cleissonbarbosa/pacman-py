@@ -33,10 +33,39 @@ class Ghost:
             self.direction = random.choice(["left", "right", "up", "down"])
 
     def draw(self, surface):
-        # Draw ghost as a circle; if frightened, show blue color
-        color = (0, 0, 255) if self.frightened else self.color
-        pygame.draw.circle(surface, color, (int(self.x), int(self.y)), CELL_SIZE // 2)
-
+        # Draw ghost with a ghost-like shape
+        ghost_color = (0, 0, 255) if self.frightened else self.color
+        x = int(self.x)
+        y = int(self.y)
+        r = CELL_SIZE // 2
+        
+        # Draw head as a circle shifted upward
+        head_center = (x, y - r // 2)
+        pygame.draw.circle(surface, ghost_color, head_center, r)
+        
+        # Draw body rectangle below the head
+        body_rect = pygame.Rect(x - r, y - r // 2, 2 * r, r)
+        pygame.draw.rect(surface, ghost_color, body_rect)
+        
+        # Draw scalloped bottom with 5 semi-circles
+        num_teeth = 5
+        step = (2 * r) / (num_teeth - 1)
+        for i in range(num_teeth):
+            tooth_center = (int(x - r + i * step), y + r // 2)
+            pygame.draw.circle(surface, ghost_color, tooth_center, r // 4)
+        
+        # Draw eyes
+        eye_radius = r // 4
+        left_eye_center = (x - r // 2, y - r // 2)
+        right_eye_center = (x + r // 2, y - r // 2)
+        pygame.draw.circle(surface, (255, 255, 255), left_eye_center, eye_radius)
+        pygame.draw.circle(surface, (255, 255, 255), right_eye_center, eye_radius)
+        
+        # Draw pupils
+        pupil_radius = r // 8
+        pygame.draw.circle(surface, (0, 0, 0), left_eye_center, pupil_radius)
+        pygame.draw.circle(surface, (0, 0, 0), right_eye_center, pupil_radius)
+        
     def reset(self, init_cell):
         self.init_cell = init_cell
         self.x = init_cell[0] * CELL_SIZE + CELL_SIZE // 2
