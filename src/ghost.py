@@ -62,10 +62,26 @@ class Ghost:
         pygame.draw.circle(surface, (255, 255, 255), left_eye_center, eye_radius)
         pygame.draw.circle(surface, (255, 255, 255), right_eye_center, eye_radius)
         
-        # Draw pupils
+        # Draw pupils with direction
         pupil_radius = r // 8
-        pygame.draw.circle(surface, (0, 0, 0), left_eye_center, pupil_radius)
-        pygame.draw.circle(surface, (0, 0, 0), right_eye_center, pupil_radius)
+        pupil_offset = eye_radius // 2
+        
+        # Calculate pupil positions based on direction
+        if self.direction == "right":
+            left_pupil = (left_eye_center[0] + pupil_offset, left_eye_center[1])
+            right_pupil = (right_eye_center[0] + pupil_offset, right_eye_center[1])
+        elif self.direction == "left":
+            left_pupil = (left_eye_center[0] - pupil_offset, left_eye_center[1])
+            right_pupil = (right_eye_center[0] - pupil_offset, right_eye_center[1])
+        elif self.direction == "up":
+            left_pupil = (left_eye_center[0], left_eye_center[1] - pupil_offset)
+            right_pupil = (right_eye_center[0], right_eye_center[1] - pupil_offset)
+        else:  # down
+            left_pupil = (left_eye_center[0], left_eye_center[1] + pupil_offset)
+            right_pupil = (right_eye_center[0], right_eye_center[1] + pupil_offset)
+        
+        pygame.draw.circle(surface, (0, 0, 0), left_pupil, pupil_radius)
+        pygame.draw.circle(surface, (0, 0, 0), right_pupil, pupil_radius)
         
     def reset(self, init_cell):
         self.init_cell = init_cell
