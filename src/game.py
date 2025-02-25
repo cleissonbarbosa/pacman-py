@@ -1,5 +1,6 @@
 import sys
 import pygame
+import math
 from settings import (
     WIDTH,
     HEIGHT,
@@ -80,19 +81,13 @@ class Game:
 
             # Check collision with points
             for point in self.points[:]:
-                if (
-                    abs(self.pacman.x - point[0]) < 20
-                    and abs(self.pacman.y - point[1]) < 20
-                ):
+                if math.hypot(self.pacman.x - point[0], self.pacman.y - point[1]) < self.pacman.radius:
                     self.points.remove(point)
                     self.score += 10
 
             # Check collision with power pellets
             for pellet in self.power_pellets[:]:
-                if (
-                    abs(self.pacman.x - pellet[0]) < 20
-                    and abs(self.pacman.y - pellet[1]) < 20
-                ):
+                if math.hypot(self.pacman.x - pellet[0], self.pacman.y - pellet[1]) < self.pacman.radius:
                     self.power_pellets.remove(pellet)
                     self.score += 50
                     self.power_pellet_active = True

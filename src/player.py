@@ -10,7 +10,7 @@ class Pacman:
         self.y = init_cell[1] * CELL_SIZE + CELL_SIZE // 2 + UI_BAR_HEIGHT
         self.speed = VELOCITY
         self.direction = "right"
-        self.radius = 20
+        self.radius = CELL_SIZE // 2 - 5
 
     def move(self, keys, collision_func):
         new_x, new_y = self.x, self.y
