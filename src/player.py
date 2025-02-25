@@ -1,12 +1,13 @@
 import pygame
 import math
-from settings import CELL_SIZE, VELOCITY, YELLOW
+from settings import CELL_SIZE, VELOCITY, YELLOW, UI_BAR_HEIGHT
 
 
 class Pacman:
     def __init__(self, init_cell=(1, 1)):
         self.x = init_cell[0] * CELL_SIZE + CELL_SIZE // 2
-        self.y = init_cell[1] * CELL_SIZE + CELL_SIZE // 2
+        # Adjust y by adding UI_BAR_HEIGHT
+        self.y = init_cell[1] * CELL_SIZE + CELL_SIZE // 2 + UI_BAR_HEIGHT
         self.speed = VELOCITY
         self.direction = "right"
         self.radius = 20

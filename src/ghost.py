@@ -1,5 +1,5 @@
 import pygame
-from settings import CELL_SIZE, VELOCITY
+from settings import CELL_SIZE, VELOCITY, UI_BAR_HEIGHT
 import random
 
 
@@ -7,7 +7,8 @@ class Ghost:
     def __init__(self, init_cell, color, name):
         self.init_cell = init_cell
         self.x = init_cell[0] * CELL_SIZE + CELL_SIZE // 2
-        self.y = init_cell[1] * CELL_SIZE + CELL_SIZE // 2
+        # Add UI_BAR_HEIGHT offset to y coordinate
+        self.y = init_cell[1] * CELL_SIZE + CELL_SIZE // 2 + UI_BAR_HEIGHT
         self.color = color
         self.name = name
         self.speed = VELOCITY - 1
@@ -69,6 +70,6 @@ class Ghost:
     def reset(self, init_cell):
         self.init_cell = init_cell
         self.x = init_cell[0] * CELL_SIZE + CELL_SIZE // 2
-        self.y = init_cell[1] * CELL_SIZE + CELL_SIZE // 2
+        self.y = init_cell[1] * CELL_SIZE + CELL_SIZE // 2 + UI_BAR_HEIGHT
         self.frightened = False
         self.direction = random.choice(["left", "right", "up", "down"])

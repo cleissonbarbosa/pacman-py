@@ -14,6 +14,8 @@ from settings import (
     PINK,
     CYAN,
     ORANGE,
+    GRAY,
+    UI_BAR_HEIGHT,
 )
 from maze import draw_labyrinth, create_points, draw_points, draw_power_pellets
 from player import Pacman
@@ -47,8 +49,10 @@ class Game:
         self.won = False
 
     def collision(self, x, y):
+        # Adjust y by subtracting UI_BAR_HEIGHT since maze is drawn offset
+        y_adjusted = y - UI_BAR_HEIGHT
         col = int(x // CELL_SIZE)
-        row = int(y // CELL_SIZE)
+        row = int(y_adjusted // CELL_SIZE)
         if 0 <= row < len(LABYRINTH_GRID) and 0 <= col < len(LABYRINTH_GRID[0]):
             return LABYRINTH_GRID[row][col] == 1
         return True
@@ -131,7 +135,21 @@ class Game:
                     ghost.frightened = False
 
     def draw(self):
+        # Fill background
         self.screen.fill(BLACK)
+
+        # Draw top UI bar for score and lives
+        ui_rect = pygame.Rect(0, 0, WIDTH, UI_BAR_HEIGHT)
+        pygame.draw.rect(self.screen, GRAY, ui_rect)  # Draw UI background
+        pygame.draw.line(self.screen, WHITE, (0, UI_BAR_HEIGHT), (WIDTH, UI_BAR_HEIGHT), 2)  # Divider
+
+        # Draw score and lives on the UI bar
+        score_text = self.font.render(f"Score: {self.score}", True, WHITE)
+        lives_text = self.font.render(f"Lives: {self.lives}", True, WHITE)
+        self.screen.blit(score_text, (10, (UI_BAR_HEIGHT - score_text.get_height()) // 2))
+        self.screen.blit(lives_text, (WIDTH - lives_text.get_width() - 10, (UI_BAR_HEIGHT - lives_text.get_height()) // 2))
+
+        # Draw maze and game elements (maze and items offsets are already adjusted using UI_BAR_HEIGHT in maze.py)
         draw_labyrinth(self.screen)
         draw_points(self.screen, self.points)
         draw_power_pellets(self.screen, self.power_pellets)
@@ -139,18 +157,13 @@ class Game:
         for ghost in self.ghosts:
             ghost.draw(self.screen)
 
-        # Draw UI
-        score_text = self.font.render(f"Score: {self.score}", True, WHITE)
-        lives_text = self.font.render(f"Lives: {self.lives}", True, WHITE)
-        self.screen.blit(score_text, (10, 10))
-        self.screen.blit(lives_text, (10, 40))
-
+        # Draw end game messages
         if self.game_over:
             over_text = self.font.render("Game Over! Press R to restart", True, WHITE)
-            self.screen.blit(over_text, (WIDTH // 2 - 200, HEIGHT // 2))
+            self.screen.blit(over_text, (WIDTH // 2 - over_text.get_width() // 2, HEIGHT // 2))
         elif self.won:
             win_text = self.font.render("You Won! Press R to restart", True, WHITE)
-            self.screen.blit(win_text, (WIDTH // 2 - 200, HEIGHT // 2))
+            self.screen.blit(win_text, (WIDTH // 2 - win_text.get_width() // 2, HEIGHT // 2))
 
         pygame.display.flip()
 
