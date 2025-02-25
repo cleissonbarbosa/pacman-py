@@ -1,58 +1,58 @@
 # Pac-Man Python
 
-Este projeto implementa uma versão do clássico Pac-Man utilizando Python e a biblioteca Pygame.
+This project implements a version of the classic Pac-Man using Python and the Pygame library.
 
-## Visão Geral
+## Overview
 
-- **Jogo**: Controle o Pac-Man para coletar pontos e evitar fantasmas.
-- **Fases**: O jogo consiste em um labirinto onde você deve coletar todos os pontos e power pellets para vencer.
-- **Fantasmas**: Quatro fantasmas com comportamentos simples patrulham o labirinto. Quando Pac-Man coleta um power pellet, os fantasmas ficam assustados e podem ser comidos.
+- **Game**: Control Pac-Man to collect dots and avoid ghosts.
+- **Levels**: The game takes place in a maze where you must collect all the dots and power pellets to win.
+- **Ghosts**: Four ghosts with simple behaviors patrol the maze. When Pac-Man collects a power pellet, the ghosts become scared and can be eaten.
 
-## Imagens do Jogo
+## Game Images
 
 https://github.com/user-attachments/assets/9a2c5738-874a-4b65-a3ba-b39d994d772b
 
-![Durante o Jogo](/assets/1.2025-02-24%2020-44-59.png)
+![In Game](/assets/1.2025-02-24%2020-44-59.png)
 
-## Como Jogar
+## How to Play
 
-1. **Instalação**: 
-   - Certifique-se de ter o Python instalado.
-   - Instale o Pygame com o comando: `pip install pygame`
+1. **Installation**:
+   - Make sure you have Python installed.
+   - Install Pygame using the command: `pip install pygame`
 
-2. **Executar o Jogo**:
-   - Navegue até a pasta do projeto e execute:
+2. **Run the Game**:
+   - Navigate to the project folder and run:
      ```bash
      python src/main.py
      ```
 
-3. **Controles**:
-   - Use as setas do teclado para movimentar o Pac-Man.
-   - Quando o jogo acabar (vitória ou derrota), pressione a tecla R para reiniciar.
+3. **Controls**:
+   - Use the arrow keys to move Pac-Man.
+   - When the game is over (win or lose), press the R key to restart.
 
-## Estrutura do Projeto
+## Project Structure
 
 ```
 pacman-py/
 ├── src/
-│   ├── game.py         # Lógica principal do jogo
-│   ├── ghost.py        # Comportamento dos fantasmas
-│   ├── main.py         # Ponto de entrada do jogo
-│   ├── maze.py         # Criação e desenho do labirinto e pontos
-│   ├── player.py       # Lógica do Pac-Man
-│   └── settings.py     # Configurações do jogo (cores, velocidade, etc.)
-└── README.md           # Este arquivo de documentação
+│   ├── game.py         # Main game logic
+│   ├── ghost.py        # Ghost behavior
+│   ├── main.py         # Game entry point
+│   ├── maze.py         # Maze creation and dot drawing
+│   ├── player.py       # Pac-Man logic
+│   └── settings.py     # Game settings (colors, speed, etc.)
+└── README.md           # This documentation file
 ```
 
-## Contribuindo
+## Contributing
 
-Fique à vontade para contribuir com melhorias, correções e novas funcionalidades.
+Feel free to contribute improvements, fixes, and new features.
 
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
-3. Envie suas alterações com commit (`git commit -m 'Adiciona nova funcionalidade'`)
-4. Envie um pull request
+1. Fork the project
+2. Create a branch for your feature (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Adds new feature'`)
+4. Submit a pull request
 
-## Licença
+## License
 
-Este projeto é open-source e livre para uso. Veja o arquivo LICENSE para mais detalhes.
+This project is open-source and free to use. See the LICENSE file for more details.
