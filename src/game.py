@@ -101,15 +101,10 @@ class Game:
                     abs(self.pacman.x - ghost.x) < 40
                     and abs(self.pacman.y - ghost.y) < 40
                 ):
-                    if ghost.frightened:
-                        new_pos = (
-                            (6, 6)
-                            if ghost.name in ["Blinky", "Pinky"]
-                            else (6, 7) if ghost.name == "Inky" else (7, 7)
-                        )
-                        ghost.reset(new_pos)
+                    if ghost.frightened and not ghost.is_dying and not ghost.respawning:
+                        ghost.start_death_animation()
                         self.score += 200
-                    else:
+                    elif not ghost.frightened and not ghost.is_dying and not ghost.respawning:
                         self.lives -= 1
                         self.pacman.__init__()
                         if self.lives <= 0:
