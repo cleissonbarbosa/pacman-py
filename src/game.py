@@ -145,7 +145,7 @@ class Game:
 
         # Draw top UI bar for score and lives
         ui_rect = pygame.Rect(0, 0, WIDTH, UI_BAR_HEIGHT)
-        pygame.draw.rect(self.screen, GRAY, ui_rect)  # Draw UI background
+        pygame.draw.rect(self.screen, BLACK, ui_rect)  # Draw UI background
         pygame.draw.line(self.screen, WHITE, (0, UI_BAR_HEIGHT), (WIDTH, UI_BAR_HEIGHT), 2)  # Divider
 
         # Draw score on the UI bar
