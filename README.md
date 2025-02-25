@@ -10,7 +10,10 @@ Este projeto implementa uma versão do clássico Pac-Man utilizando Python e a b
 
 ## Imagens do Jogo
 
+<video controls src="/assets/v1.2025-02-24 21-57-44.mp4"></video>
+
 ![Durante o Jogo](/assets/1.2025-02-24%2020-44-59.png)
+
 
 ## Como Jogar
 
