@@ -44,11 +44,6 @@ pacman-py/
 └── README.md           # Este arquivo de documentação
 ```
 
-## Desenvolvimento
-
-- **Refatoração**: A lógica principal foi separada da função `main()` para a classe `Game` em `game.py`, melhorando a organização do código.
-- **Modularização**: Cada aspecto do jogo (jogador, fantasmas, labirinto) está em seu próprio módulo para facilitar manutenção e expansão.
-
 ## Contribuindo
 
 Fique à vontade para contribuir com melhorias, correções e novas funcionalidades.
