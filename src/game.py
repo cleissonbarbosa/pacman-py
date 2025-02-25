@@ -124,6 +124,21 @@ class Game:
                 for ghost in self.ghosts:
                     ghost.frightened = False
 
+    def draw_heart(self, surface, x, y, size, color):
+        # Draw two circles for the upper lobes of the heart
+        circle_radius = size // 4
+        left_circle_center = (x - size // 4, y - size // 4)
+        right_circle_center = (x + size // 4, y - size // 4)
+        pygame.draw.circle(surface, color, left_circle_center, circle_radius)
+        pygame.draw.circle(surface, color, right_circle_center, circle_radius)
+        # Draw the bottom triangle of the heart
+        triangle_points = [
+            (x - size // 2, y - size // 4),
+            (x + size // 2, y - size // 4),
+            (x, y + size // 2)
+        ]
+        pygame.draw.polygon(surface, color, triangle_points)
+
     def draw(self):
         # Fill background
         self.screen.fill(BLACK)
@@ -133,11 +148,19 @@ class Game:
         pygame.draw.rect(self.screen, GRAY, ui_rect)  # Draw UI background
         pygame.draw.line(self.screen, WHITE, (0, UI_BAR_HEIGHT), (WIDTH, UI_BAR_HEIGHT), 2)  # Divider
 
-        # Draw score and lives on the UI bar
+        # Draw score on the UI bar
         score_text = self.font.render(f"Score: {self.score}", True, WHITE)
-        lives_text = self.font.render(f"Lives: {self.lives}", True, WHITE)
         self.screen.blit(score_text, (10, (UI_BAR_HEIGHT - score_text.get_height()) // 2))
-        self.screen.blit(lives_text, (WIDTH - lives_text.get_width() - 10, (UI_BAR_HEIGHT - lives_text.get_height()) // 2))
+
+        # Draw hearts for lives using pygame.draw
+        heart_size = 20
+        spacing = 5
+        total_width = self.lives * heart_size + (self.lives - 1) * spacing
+        start_x = WIDTH - 10 - total_width + heart_size // 2
+        center_y = UI_BAR_HEIGHT // 2
+        for i in range(self.lives):
+            heart_x = start_x + i * (heart_size + spacing)
+            self.draw_heart(self.screen, heart_x, center_y, heart_size, RED)
 
         # Draw maze and game elements (maze and items offsets are already adjusted using UI_BAR_HEIGHT in maze.py)
         draw_labyrinth(self.screen)
